@@ -128,16 +128,13 @@ def news_search(
 ) -> dict:
     query_embedding = compact_embedding(query)
 
-    # 뉴스 메타데이터에 'date' 필드(YYYY-MM-DD 문자열)가 있다고 가정.
-    # chromadb 버전에 따라 문자열 범위 비교($gte/$lte) 지원 여부가 다르니
-    # 실제 컬렉션의 메타데이터 스키마와 chromadb 버전을 확인하세요.
     where_filter = None
     if start_date or end_date:
         conditions = []
         if start_date:
-            conditions.append({"date": {"$gte": start_date}})
+            conditions.append({"pubDate": {"$gte": start_date}})
         if end_date:
-            conditions.append({"date": {"$lte": end_date}})
+            conditions.append({"pubDate": {"$lte": end_date}})
         where_filter = conditions[0] if len(conditions) == 1 else {"$and": conditions}
 
     if not ltm_collection.count():
