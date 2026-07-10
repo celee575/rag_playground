@@ -9,7 +9,12 @@ LTM(ChromaDB) 검색 품질 검증 페이지
 import pandas as pd
 import streamlit as st
 
-from utils.app_common import get_gemini_api_key, get_genai_client, get_ltm_collection
+from utils.app_common import (
+    call_with_retry,
+    get_gemini_api_key,
+    get_genai_client,
+    get_ltm_collection,
+)
 
 st.title("🔍 LTM 검색 품질 검증")
 st.caption("입력한 질문이 ChromaDB에서 어떤 문서를 얼마나 가깝게 검색해오는지 확인합니다.")
@@ -44,8 +49,16 @@ ltm_collection = get_ltm_collection(CHROMA_STORE_PATH)
 
 
 def compact_embedding(text: str) -> list[float]:
-    response = client.models.embed_content(model=EMBEDDING_MODEL, contents=text)
-    embedding = response.embeddings[0].values
+    def _embed():
+        response = client.models.embed_content(model=EMBEDDING_MODEL, contents=text)
+        return response.embeddings[0].values
+
+    embedding = call_with_retry(
+        _embed,
+        on_retry=lambda attempt, max_retries, reason, delay: st.toast(
+            f"{reason} - {delay:.1f}초 후 재시도 ({attempt}/{max_retries})"
+        ),
+    )
     return [float(value) for value in embedding]
 
 
@@ -139,8 +152,7 @@ for rank, (doc, meta, dist, doc_id) in enumerate(zip(documents, metadatas, dista
 result_df = pd.DataFrame(rows)
 st.dataframe(
     result_df[["순위", "distance", "id", "문서 미리보기"]],
-    # use_container_width=True,
-    width='stretch',
+    use_container_width=True,
     hide_index=True,
 )
 

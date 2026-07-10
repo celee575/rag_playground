@@ -1,11 +1,5 @@
 import json
 
-
-# def compact_embedding(text: str) -> list[float]:
-#     response = client.models.embed_content(model=EMBEDDING_MODEL, contents=text)
-#     embedding = response.embeddings[0].values
-#     return [float(value) for value in embedding]
-
 def parse_metadata_json_list(metadata, key):
     value = (metadata or {}).get(key)
     if value in (None, ""):
