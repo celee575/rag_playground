@@ -151,7 +151,7 @@ for rank, (doc, meta, dist, doc_id) in enumerate(zip(documents, metadatas, dista
 result_df = pd.DataFrame(rows)
 st.dataframe(
     result_df[["순위", "distance", "id", "문서 미리보기"]],
-    use_container_width=True,
+    width='stretch',
     hide_index=True,
 )
 
