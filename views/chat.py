@@ -22,7 +22,7 @@ from utils.app_common import (
 )
 from utils.chat_utils import chroma_hits, format_ltm_hit_for_chatbot
 
-st.title("⛽ LTM + Gemini 챗봇 (뉴스 검색 + 주유소 가격 Tool Use)")
+st.title("⛽ RAG 기반 Gemini 챗봇 (뉴스 검색 + 유가 데이터 Tool Use)")
 
 
 # -----------------------------------------------------------------------------

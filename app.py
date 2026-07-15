@@ -10,7 +10,7 @@ import streamlit as st
 
 st.set_page_config(page_title="RAG 기반 Gemini 챗봇", page_icon="⛽", layout="wide")
 
-chat_page = st.Page("views/chat.py", title="리스크 관리 AI Agent", icon="⛽", default=True)
+chat_page = st.Page("views/chat.py", title="RAG 기반 Gemini 챗봇", icon="⛽", default=True)
 search_quality_page = st.Page("views/search_quality.py", title="검색 품질 검증", icon="🔍")
 
 pg = st.navigation([chat_page, search_quality_page])

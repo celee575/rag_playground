@@ -16,7 +16,7 @@ from utils.app_common import (
     get_ltm_collection,
 )
 
-st.title("🔍 LTM 검색 품질 검증")
+st.title("🔍 검색 품질 검증")
 st.caption("입력한 질문이 ChromaDB에서 어떤 문서를 얼마나 가깝게 검색해오는지 확인합니다.")
 
 
@@ -66,10 +66,10 @@ def compact_embedding(text: str) -> list[float]:
 # 컬렉션 현황
 # -----------------------------------------------------------------------------
 total_docs = ltm_collection.count()
-st.metric("LTM 컬렉션 문서 수", total_docs)
+st.metric("문서 수", total_docs)
 
 if total_docs == 0:
-    st.warning("현재 LTM 컬렉션에 저장된 문서가 없습니다. 검색 결과가 항상 비어있습니다.")
+    st.warning("현재 저장된 문서가 없습니다. 검색 결과가 항상 비어있습니다.")
 
 
 # -----------------------------------------------------------------------------
@@ -123,7 +123,6 @@ if distances:
 
 st.caption(
     "distance는 값이 작을수록 질문과 더 가깝게(유사하게) 매칭되었다는 뜻입니다. "
-    "(거리 계산 방식은 컬렉션 생성 시 설정에 따라 다를 수 있습니다.)"
 )
 
 if hit_count == 0:
