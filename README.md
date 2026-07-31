@@ -52,7 +52,7 @@ RAG-powered news assistant built with Gemini, ChromaDB, Streamlit, and tool call
 ## 프로젝트 구조
 
 ```
-project-root/
+Risk AI Agent/
 │   chatbot.py        # 챗봇
 │   .env.example        # 설정 관리 예시
 ├── utils/
