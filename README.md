@@ -225,8 +225,7 @@ AI 데이터 파이프라인 확장
 title: 아키텍처
 ---
 flowchart
-  subgraph K
-    MinIO e05@--> DI
+  subgraph .
     A5 e07@-.저장된 벡터 사용.-> SS
     e07@{ animate: true }
     subgraph DI ["Document Ingestion"]
