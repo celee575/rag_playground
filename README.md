@@ -271,3 +271,5 @@ flowchart
   end
 
 ```
+
+<img src="https://hitcount.dev/p/celee575/rag_playground.svg" alt="Hit Counter">
