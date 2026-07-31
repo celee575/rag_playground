@@ -64,7 +64,6 @@ Risk AI Agent/
 │   └── chroma_db/           # ChromaDB PersistentClient 영속 저장 경로
 ```
 
-> streamlit 관련 구조 및 실행 방법은 별도 문서에서 다룹니다.
 
 ## 시스템 아키텍처
 
